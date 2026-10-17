@@ -60,9 +60,8 @@ pipeline {
 }
 
             }
-        }
 
-        stage('Test EC2 SSH') {
+    stage('Test EC2 SSH') {
     steps {
         sshagent(['production-ec2-ssh']) {
             sh '''
@@ -74,11 +73,12 @@ pipeline {
     }
 }
 
-        stage('Health Check') {
+    stage('Health Check') {
             steps {
                 echo "Health check stage"
             }
         }
+        
 }
 
     post {
