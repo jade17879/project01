@@ -72,12 +72,6 @@ pipeline {
         }
     }
 }
-
-    stage('Health Check') {
-            steps {
-                echo "Health check stage"
-            }
-        }
         
 }
 
