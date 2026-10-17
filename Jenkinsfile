@@ -61,17 +61,6 @@ pipeline {
 
             }
 
-    stage('Test EC2 SSH') {
-    steps {
-        sshagent(['production-ec2-ssh']) {
-            sh '''
-                ssh -o StrictHostKeyChecking=yes \
-                    ubuntu@3.6.40.49 \
-                    "hostname"
-            '''
-        }
-    }
-}
         
 }
 
