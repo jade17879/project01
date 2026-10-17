@@ -49,8 +49,6 @@ pipeline {
             steps {
                 echo "Deployment stage"
                 
-stage('Deploy to EC2') {
-    steps {
         sshagent(['production-ec2-ssh']) {
             sh '''
                 ssh -o StrictHostKeyChecking=yes \
