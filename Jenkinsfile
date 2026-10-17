@@ -5,7 +5,7 @@ pipeline {
     environment {
         IMAGE_NAME = "buildhouse/project_02"
         REGISTRY_CREDENTIALS = credentials('dockerhub-credentials')
-        IMAGE_TAG = "${BUILD_NUMBER}"
+        IMAGE_TAG = "${1}"
     }
 
     stages {
