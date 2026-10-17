@@ -79,7 +79,7 @@ pipeline {
                 echo "Health check stage"
             }
         }
-    }
+}
 
     post {
 
