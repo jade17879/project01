@@ -48,6 +48,19 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deployment stage"
+                
+stage('Deploy to EC2') {
+    steps {
+        sshagent(['production-ec2-ssh']) {
+            sh '''
+                ssh -o StrictHostKeyChecking=yes \
+                    ubuntu@3.6.40.49\
+                    "sudo docker pull buildhouse/project_02:v1"
+            '''
+        }
+    }
+}
+
             }
         }
 
