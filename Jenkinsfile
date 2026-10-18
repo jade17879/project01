@@ -36,15 +36,27 @@ pipeline {
             }
         }
 
-        stage('Push Image') {
-            steps {
-                sh """
-                    docker push buildhouse/project_02:v1
-                    docker push ${buildhouse/project_02}:latest
-                """
-            }
-        }
+        stage('Push Docker Image') {
+    steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub-credentials',
+            usernameVariable: 'DOCKERHUB_USER',
+            passwordVariable: 'DOCKERHUB_TOKEN'
+        )]) {
+            sh '''
+                set +x
+                echo "$DOCKERHUB_TOKEN" | docker login \
+                    --username "$DOCKERHUB_USER" \
+                    --password-stdin
 
+                docker push "$IMAGE_NAME:$IMAGE_TAG"
+                docker push "$IMAGE_NAME:latest"
+
+                docker logout
+            '''
+        }
+    }
+}
         stage('Deploy') {
             steps {
                 echo "Deployment stage"
