@@ -20,8 +20,8 @@ pipeline {
             steps {
                 sh """
                     docker build \
-                    -t ${buildhouse/project_02}:${v1} \
-                    -t ${buildhouse/project_02}:latest .
+                    -t ${IMAGE_NAME}:${IMAGE_TAG} \
+                -t ${IMAGE_NAME}:latest .
                 """
             }
         }
