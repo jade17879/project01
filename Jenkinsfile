@@ -16,6 +16,21 @@ pipeline {
             }
         }
 
+        stage('Check Workspace') {
+    steps {
+        sh '''
+            echo "Current directory:"
+            pwd
+
+            echo "Files downloaded from GitHub:"
+            ls -la
+
+            echo "Dockerfiles:"
+            find . -maxdepth 4 -iname 'Dockerfile' -type f
+        '''
+    }
+}
+
         stage('Build Docker Image') {
             steps {
                 sh """
